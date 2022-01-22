@@ -4,4 +4,8 @@
     <string name="cek_ongkir">CEK ONGKIR</string>
     <string name="cek_resi">CEK RESI</string>
     <string name="cek_ongkir_resi">Cek Ongkir dan Resi</string>
+    <string name="kota_asal">Kota asal</string>
+    <string name="kota_tujuan">Kota tujuan</string>
+    <string name="cek_ongkos_kirim">Cek Ongkos Kirim</string>
+    <string name="info_ongkir">Harga ongkos kirim/ 1 KG</string>
 </resources>

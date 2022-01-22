@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.moonlightsplitter.cekongkir.R
 import com.moonlightsplitter.cekongkir.databinding.FragmentWaybillBinding
 
 class WaybillFragment : Fragment() {
