@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CekOngkir</string>
     <string name="logo_text">MoonlightSplitter</string>
+    <string name="cek_ongkir">CEK ONGKIR</string>
+    <string name="cek_resi">CEK RESI</string>
+    <string name="cek_ongkir_resi">Cek Ongkir dan Resi</string>
 </resources>
