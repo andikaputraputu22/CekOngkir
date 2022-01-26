@@ -8,4 +8,6 @@
     <string name="kota_tujuan">Kota tujuan</string>
     <string name="cek_ongkos_kirim">Cek Ongkos Kirim</string>
     <string name="info_ongkir">Harga ongkos kirim/ 1 KG</string>
+    <string name="select_city">Pilih Kota</string>
+    <string name="select_subdistrict">Pilih Kecamatan</string>
 </resources>
