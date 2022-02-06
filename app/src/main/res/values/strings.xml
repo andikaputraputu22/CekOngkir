@@ -10,4 +10,5 @@
     <string name="info_ongkir">Harga ongkos kirim/ 1 KG</string>
     <string name="select_city">Pilih Kota</string>
     <string name="select_subdistrict">Pilih Kecamatan</string>
+    <string name="search_city">Cari kota</string>
 </resources>
