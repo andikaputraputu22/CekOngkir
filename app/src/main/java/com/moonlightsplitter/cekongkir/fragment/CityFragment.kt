@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -65,10 +66,6 @@ class CityFragment : Fragment() {
     }
 
     private fun setupListener() {
-//        binding.search.setOnClickListener {
-//            findNavController().navigate(R.id.action_cityFragment_to_subdistrictFragment)
-//        }
-
         binding.search.doAfterTextChanged {
             cityAdapter.filter.filter(it.toString())
         }
@@ -81,7 +78,12 @@ class CityFragment : Fragment() {
     private fun setupRecyclerview() {
         cityAdapter = CityAdapter(arrayListOf(), object : CityAdapter.OnAdapterListener{
             override fun onClick(result: ResultsCity) {
-                //
+                viewModel.fetchSubdistrict(result.city_id)
+                findNavController().navigate(
+                    R.id.action_cityFragment_to_subdistrictFragment,
+                    bundleOf("city_id" to result.city_id,
+                                    "city_name" to result.city_name)
+                )
             }
         })
 
