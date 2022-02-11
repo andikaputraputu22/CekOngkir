@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.moonlightsplitter.cekongkir.api.Client
 import com.moonlightsplitter.cekongkir.databinding.ActivityCityBinding
 import com.moonlightsplitter.cekongkir.factory.CityViewModelFactory
+import com.moonlightsplitter.cekongkir.repository.RajaOngkirRepository
 import com.moonlightsplitter.cekongkir.tools.Resources
+import com.moonlightsplitter.cekongkir.tools.SharedPreferencesManager
 import com.moonlightsplitter.cekongkir.viewmodel.CityViewModel
 import timber.log.Timber
 
@@ -17,7 +19,9 @@ class CityActivity : AppCompatActivity() {
     private val binding by lazy { ActivityCityBinding.inflate(layoutInflater) }
     private lateinit var viewModel: CityViewModel
     private lateinit var viewModelFactory: CityViewModelFactory
+    private lateinit var repository: RajaOngkirRepository
     private val api by lazy { Client.instance }
+    private val pref by lazy { SharedPreferencesManager(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +34,8 @@ class CityActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        viewModelFactory = CityViewModelFactory(api)
+        repository = RajaOngkirRepository(api, pref)
+        viewModelFactory = CityViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(CityViewModel::class.java)
     }
 
