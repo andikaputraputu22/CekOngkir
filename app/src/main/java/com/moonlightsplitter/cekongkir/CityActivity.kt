@@ -2,26 +2,21 @@ package com.moonlightsplitter.cekongkir
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.moonlightsplitter.cekongkir.api.Client
 import com.moonlightsplitter.cekongkir.databinding.ActivityCityBinding
 import com.moonlightsplitter.cekongkir.factory.CityViewModelFactory
-import com.moonlightsplitter.cekongkir.repository.RajaOngkirRepository
-import com.moonlightsplitter.cekongkir.tools.Resources
-import com.moonlightsplitter.cekongkir.tools.SharedPreferencesManager
 import com.moonlightsplitter.cekongkir.viewmodel.CityViewModel
-import timber.log.Timber
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 
-class CityActivity : AppCompatActivity() {
+class CityActivity : AppCompatActivity(), KodeinAware {
 
+    override val kodein by kodein()
+    private val viewModelFactory: CityViewModelFactory by instance()
     private val binding by lazy { ActivityCityBinding.inflate(layoutInflater) }
     private lateinit var viewModel: CityViewModel
-    private lateinit var viewModelFactory: CityViewModelFactory
-    private lateinit var repository: RajaOngkirRepository
-    private val api by lazy { Client.instance }
-    private val pref by lazy { SharedPreferencesManager(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +29,6 @@ class CityActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        repository = RajaOngkirRepository(api, pref)
-        viewModelFactory = CityViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(CityViewModel::class.java)
     }
 

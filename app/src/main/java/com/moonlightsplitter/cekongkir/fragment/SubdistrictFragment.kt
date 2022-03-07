@@ -22,6 +22,7 @@ class SubdistrictFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(requireActivity()).get(CityViewModel::class.java) }
     private val cityId by lazy { requireArguments().getString("city_id") }
     private val cityName by lazy { requireArguments().getString("city_name") }
+    private val type by lazy { requireActivity().intent.getStringExtra("intent_type") }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,7 +71,12 @@ class SubdistrictFragment : Fragment() {
     private fun setupRecyclerview() {
         subdistrictAdapter = SubdistrictAdapter(arrayListOf(), object : SubdistrictAdapter.OnAdapterListener{
             override fun onClick(result: ResultsSubdistrict) {
-
+                viewModel.savePreferences(
+                    type = type!!,
+                    id = result.subdistrict_id,
+                    name = "$cityName, ${result.subdistrict_name}"
+                )
+                requireActivity().finish()
             }
         })
 

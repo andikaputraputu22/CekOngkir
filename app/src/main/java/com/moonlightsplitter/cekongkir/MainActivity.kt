@@ -2,13 +2,22 @@ package com.moonlightsplitter.cekongkir
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.moonlightsplitter.cekongkir.adapter.HomeTabAdapter
 import com.moonlightsplitter.cekongkir.databinding.ActivityMainBinding
+import com.moonlightsplitter.cekongkir.factory.CostViewModelFactory
+import com.moonlightsplitter.cekongkir.viewmodel.CostViewModel
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), KodeinAware {
 
+    override val kodein by kodein()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewModelFactory: CostViewModelFactory by instance()
+    private lateinit var viewModel: CostViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         setupToolbar()
         setupTab()
+        setupViewModel()
     }
 
     private fun setupToolbar() {
@@ -30,5 +40,9 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = titles[position]
         }.attach()
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CostViewModel::class.java)
     }
 }
